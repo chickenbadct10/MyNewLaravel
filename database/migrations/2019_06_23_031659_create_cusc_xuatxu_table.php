@@ -14,9 +14,11 @@ class CreateCuscXuatxuTable extends Migration
     public function up()
     {
         Schema::create('cusc_xuatxu', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
             $table->unsignedSmallInteger('xx_ma')
                 ->autoIncrement()
-                ->comment('Xuất xứ sản phẩm'); 
+                ->comment('Xuất xứ sản phẩm');
             $table->String('xx_ten',100)
                 ->comment('Tên xuất xứ');
                 $table->timestamp('xx_taoMoi')
@@ -28,9 +30,11 @@ class CreateCuscXuatxuTable extends Migration
             $table->tinyInteger('xx_trangThai')
                 ->default('2')
                 ->comment('Trạng thái # Trạng thái xuất xứ sản phẩm: 1-khóa, 2-khả dụng');
-            
-            $table->unique(['xx_ten']);        
+
+            $table->unique(['xx_ten']);
         });
+            DB::statement("ALTER TABLE `cusc_xuatxu` comment 'Xuất xứ # Xuất xứ của sản phẩm'");
+
     }
 
     /**

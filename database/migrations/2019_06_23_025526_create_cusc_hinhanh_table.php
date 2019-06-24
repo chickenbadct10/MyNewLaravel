@@ -14,19 +14,15 @@ class CreateCuscHinhanhTable extends Migration
     public function up()
     {
         Schema::create('cusc_hinhanh', function (Blueprint $table) {
-            $table->unsignedBigInteger('sp_ma')
-                ->comment('Mã sản phẩm');
-            $table->unsignedTinyInteger('ha_stt')
-                ->default('1')
-                ->comment('số thứ tự hình ảnh');
-            $table->String('ha_ten',150)
-                ->comment('Hình ảnh tên');
-            $table->foreign('sp_ma')
-                ->references('sp_ma')
-                ->on('cusc_sanpham')
-                ->onDelete('RESTRICT') // Sẽ xóa dữ liệu khi xóa cha, RESTRISCT sẽ không xóa khi đang sử dụng ở thằng con
-                ->onUpdate('CASCADE');// đặt khóa ngoại        
-            });
+            $table->engine = 'InnoDB';
+            $table->unsignedBigInteger('sp_ma')->comment('Sản phẩm # sp_ma # sp_ten # Mã sản phẩm');
+            $table->unsignedTinyInteger('ha_stt')->default('1')->comment('Số thứ tự # Số thứ tự hình ảnh của mỗi sản phẩm');
+            $table->string('ha_ten', 150)->comment('Tên hình ảnh # Tên hình ảnh (không bao gồm đường dẫn)');
+
+            $table->primary(['sp_ma', 'ha_stt']);
+            $table->foreign('sp_ma')->references('sp_ma')->on('cusc_sanpham')->onDelete('CASCADE')->onUpdate('CASCADE');
+        });
+        DB::statement("ALTER TABLE `cusc_hinhanh` comment 'Hình ảnh sản phẩm # Các hình ảnh chi tiết của sản phẩm'");
     }
 
     /**

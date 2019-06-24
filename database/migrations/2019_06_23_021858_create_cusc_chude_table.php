@@ -30,8 +30,8 @@ class CreateCuscChudeTable extends Migration
             $table->tinyInteger('cd_trangThai')
                 ->default('2')
                 ->comment('Trạng thái # Trạng thái chủ đề sản phẩm: 1-khóa, 2-khả dụng');
-            
-            $table->unique(['cd_ten']);
+
+            $table->unique(['cd_ma', 'cd_ten']);
         });
         DB::statement("ALTER TABLE `cusc_chude` comment 'Chủ đề sản phẩm # Chủ đề sản phẩm'");
     }
