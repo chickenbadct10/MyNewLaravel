@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ChuDe;
+use Session;
 class ChuDeController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class ChuDeController extends Controller
     public function index()
     {
         $danhsachchude = ChuDe::all();
-        return view('ChuDe.index')
+        return view('backend.ChuDe.index')
                 ->with('danhsachchude',$danhsachchude);
     }
 
@@ -26,7 +27,7 @@ class ChuDeController extends Controller
      */
     public function create()
     {
-        return view('chude.create');
+        return view('backend.chude.create');
     }
 
     /**
@@ -41,7 +42,8 @@ class ChuDeController extends Controller
         $cd->cd_ten = $request->input('cd_ten');
         $cd->cd_trangthai = 2;
         $cd->save();
-        return redirect()->route('chude.index');
+        Session::flash('alert-success','Thêm mới thành công');
+        return redirect()->route('backend.chude.index');
     }
 
     /**
@@ -65,7 +67,7 @@ class ChuDeController extends Controller
     {
         $chude = ChuDe::find($id);
 
-        return view('chude.edit')
+        return view('backend.chude.edit')
             ->with('chude',$chude);
     }
 
@@ -81,7 +83,8 @@ class ChuDeController extends Controller
         $chude = ChuDe::find($id);
         $chude ->cd_ten = $request->input('cd_ten');
         $chude->save();
-        return redirect()->route('chude.index');
+        Session::flash('alert-warning','Cập nhật thành công');
+        return redirect()->route('backend.chude.index');
     }
 
     /**
@@ -95,6 +98,7 @@ class ChuDeController extends Controller
         $chude = ChuDe::find($id);
         $chude ->delete();
 
-        return redirect()->route('chude.index');
+        Session::flash('alert-danger','Xóa thành công');
+        return redirect()->route('backend.chude.index');
     }
 }

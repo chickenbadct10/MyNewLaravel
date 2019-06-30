@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BackendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +18,19 @@ Route::get('/', function () {
 });
 
 
-Route::get('/loai', 'LoaiController@index')->name('loai.index');
-Route::get('/loai/themmoi', 'LoaiController@create')->name('loai.create');
-Route::post('/loai/store', 'LoaiController@store')->name('loai.store');
-Route::get('/loai/edit/{id}', 'LoaiController@edit')->name('loai.edit');
-Route::put('/loai/update/{id}', 'LoaiController@update')->name('loai.update');
-Route::delete('/loai/delete/{id}', 'LoaiController@destroy')->name('loai.destroy');
+Route::get('/loai', 'LoaiController@index')->name('backend.loai.index');
+Route::get('/loai/themmoi', 'LoaiController@create')->name('backend.loai.create');
+Route::post('/loai/store', 'LoaiController@store')->name('backend.loai.store');
+Route::get('/loai/edit/{id}', 'LoaiController@edit')->name('backend.loai.edit');
+Route::put('/loai/update/{id}', 'LoaiController@update')->name('backend.loai.update');
+Route::delete('/loai/delete/{id}', 'LoaiController@destroy')->name('backend.loai.destroy');
+//Route danh sách chủ đề
+Route::get('/chude', 'ChuDeController@index')->name('backend.chude.index');
+Route::get('/chude/themmoi', 'ChuDeController@create')->name('backend.chude.create');
+Route::post('/chude/store', 'ChuDeController@store')->name('backend.chude.store');
+Route::get('/chude/edit/{id}', 'ChuDeController@edit')->name('backend.chude.edit');
+Route::put('/chude/update/{id}', 'ChuDeController@update')->name('backend.chude.update');
+Route::delete('/chude/delete/{id}', 'ChuDeController@destroy')->name('backend.chude.destroy');
 
-Route::get('/chude', 'ChuDeController@index')->name('chude.index');
-Route::get('/chude/themmoi', 'ChuDeController@create')->name('chude.create');
-Route::post('/chude/store', 'ChuDeController@store')->name('chude.store');
-Route::get('/chude/edit/{id}', 'ChuDeController@edit')->name('chude.edit');
-Route::put('/chude/update/{id}', 'ChuDeController@update')->name('chude.update');
-Route::delete('/chude/delete/{id}', 'ChuDeController@destroy')->name('chude.destroy');
+//Route dành cho backend
+Route::get('/admin/','BackendController@dashboard')->name('backend.dashboard');

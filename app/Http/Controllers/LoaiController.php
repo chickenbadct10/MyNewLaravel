@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Loai;
 use App\Http\Controllers\Controller;
+use Session;
 class LoaiController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class LoaiController extends Controller
     public function index()
     {
         $danhsachloai = Loai::all();
-        return view('loai.index')
+        return view('backend.loai.index')
                 ->with('danhsachloai', $danhsachloai);
     }
 
@@ -26,7 +27,7 @@ class LoaiController extends Controller
      */
     public function create()
     {
-       return view('loai.create');
+       return view('backend.loai.create');
     }
 
     /**
@@ -40,8 +41,11 @@ class LoaiController extends Controller
         $loai = new Loai();
         $loai->l_ten = $request->input('l_ten');
         $loai->l_trangthai = 2;
+        Session::flash('alert-success','Thêm mới thành công');
         $loai->save();
-        return redirect()->route('loai.index');
+        // Cập nhật thông báo thành công
+
+        return redirect()->route('backend.loai.index');
     }
 
     /**
@@ -65,7 +69,7 @@ class LoaiController extends Controller
     {
         $loai = Loai::find($id);
 
-        return view('loai.edit')
+        return view('backend.loai.edit')
             ->with('loai',$loai);
     }
 
@@ -81,7 +85,10 @@ class LoaiController extends Controller
         $loai = Loai::find($id);
         $loai ->l_ten = $request->input('l_ten');
         $loai->save();
-        return redirect()->route('loai.index');
+
+        Session::flash('alert-warning','Cập nhật thành công');
+
+        return redirect()->route('backend.loai.index');
     }
 
     /**
@@ -95,6 +102,7 @@ class LoaiController extends Controller
         $loai = Loai::find($id);
         $loai ->delete();
 
-        return redirect()->route('loai.index');
+        Session::flash('alert-danger','Xóa thành công');
+        return redirect()->route('backend.loai.index');
     }
 }
