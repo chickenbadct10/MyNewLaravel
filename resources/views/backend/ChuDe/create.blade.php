@@ -18,7 +18,7 @@ Xem nhanh toàn hệ thống
                   <small id="cd_tenHelp" class="form-text text-muted">Nhập tên chủ đề giới hạn 50 ký tự</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Cập nhật</button>
-                <button type="submit" class="btn btn-primary">Trở về</button>
+                <a type="button" href="{{route('backend.chude.index')}}" class="btn btn-warning">Trở về</a>
 
         </form>
 </form>

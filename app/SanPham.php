@@ -15,9 +15,8 @@ class SanPham extends Model
     protected $dates        = ['sp_taoMoi', 'sp_capNhat'];
     protected $dateFormat   = 'Y-m-d H:i:s';
 
-    public function loaiSanPham(){
-        return $this ->belongsTO(App\Loai::class,'l_ma','l_ma');
-        //return $this ->belongsTO('App\Loai','l_ma','l_ma');
-
+    public function loaisanpham()
+    {
+        return $this->belongsTo('App\Loai', 'l_ma', 'l_ma');
     }
 }

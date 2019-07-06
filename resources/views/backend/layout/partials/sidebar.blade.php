@@ -19,6 +19,48 @@
                 Danh sách loại
               </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.vanchuyen.index')}}">
+                  Danh sách phương thức vận chuyển
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.thanhtoan.index')}}">
+                  Danh sách phương thức thanh toán
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.xuatxu.index')}}">
+                  Danh sách Xuất xứ
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.mau.index')}}">
+                  Danh sách Màu
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.quyen.index')}}">
+                  Danh sách Quyền
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.khachhang.index')}}">
+                  Danh sách Khách hàng
+                </a>
+            </li>
+       <!-- Danh mục Sản phẩm -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.sanpham.index')}}">
+                    Danh sách Sản phẩm
+                </a>
+            </li>
+       <!-- Danh mục Nhân viên -->
+       <li class="nav-item">
+            <a class="nav-link" href="{{route('backend.nhanvien.index')}}">
+                Danh sách Nhân viên
+            </a>
+        </li>
           </ul>
         </div>
       </nav>

@@ -14,4 +14,9 @@ class Nhanvien extends Model
     protected $primaryKey   = 'nv_ma';
     protected $dates        = ['nv_ngaySinh', 'nv_taoMoi', 'nv_capNhat'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+
+    public function quyenNhanVien()
+    {
+        return $this->belongsTo('App\Quyen', 'q_ma', 'q_ma');
+    }
 }
