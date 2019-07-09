@@ -25,7 +25,7 @@
                         <h1 class="h2">@yield('title-chucnang')</h1>
                         <a href="{{route('backend.dashboard')}}">@yield('feature-description')</a>
                 </div>
-            @include('backend.layout.partials.flash-message')
+                @include('backend.layout.partials.flash-message')
                 @yield('content')
               </main>
               <!-- EndContent-->

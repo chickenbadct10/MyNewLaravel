@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mau;
 use Session;
+use Barryvdh\DomPDF\Facade as PDF;
 class MauController extends Controller
 {
     /**
@@ -98,5 +99,16 @@ class MauController extends Controller
         $mau ->delete();
         Session::flash('alert-danger','Xóa thành công');
         return redirect()->route('backend.mau.index');
+    }
+    public function pdf(){
+        $mau = Mau::all();
+        $data = [
+            'mau'=>$mau,
+        ];
+        // return view('backend.mau.pdf')
+        //         ->with('mau',$mau);
+        $pdf = PDF::loadView('backend.mau.pdf',$data);
+        return $pdf->download('danhsachmau.pdf');
+
     }
 }

@@ -9,6 +9,8 @@ use App\Loai;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 use Storage;
+use Barryvdh\DomPDF\Facade as PDF;
+
 class SanPhamController extends Controller
 {
     /**
@@ -156,5 +158,22 @@ class SanPhamController extends Controller
         return view('backend.sanpham.print')
             ->with('danhsachsanpham', $ds_sanpham)
             ->with('danhsachloai', $ds_loai);
+    }
+
+    public function pdf(){
+        $sanpham = Sanpham::all();
+        $loai = Loai::all();
+        $data = [
+            'danhsachsanpham' =>$sanpham,
+            'danhsachloai' =>$loai,
+        ];
+
+        // code để xem trước khi có thay đổi
+        //return view('backend.sanpham.pdf')
+         //       ->with('danhsachsanpham',$sanpham)
+           //     ->with('danhsachloai',$loai);
+        // Tải về pdf
+        $pdf = PDF::loadView('backend.sanpham.pdf', $data);
+        return $pdf->download('DanhMucSanPham.pdf');
     }
 }

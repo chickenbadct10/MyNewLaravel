@@ -128,4 +128,18 @@ class NhanVienController extends Controller
         Session::flash('alert-danger','Xóa thành công');
         return redirect()->route('backend.nhanvien.index');
     }
+    public function print(){
+        $nhanvien = Nhanvien::all();
+        $quyen = Quyen::all();
+        $data = [
+            'nhanvien'=>$nhanvien,
+            'quyen'=>$quyen,
+        ];
+        return view('backend.nhanvien.print')
+                ->with('nhanvien',$nhanvien)
+                ->with('quyen',$quyen);
+    }
+    public function pdf(){
+
+    }
 }

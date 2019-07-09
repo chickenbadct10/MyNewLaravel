@@ -27,6 +27,8 @@ Trở về trang chủ
         </script>
 <div class="container">
     <a  href="{{route('backend.mau.create')}}" class="btn btn-success" id="button">Thêm mới Màu</a>
+    <a  href="{{route('backend.mau.pdf')}}" class="btn btn-danger" id="button">Xuất pdf Màu</a>
+
     <br/>
   <table class="table">
     <thead>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ChuDe;
 use Session;
+use Barryvdh\DomPDF\Facade as PDF;
 class ChuDeController extends Controller
 {
     /**
@@ -100,5 +101,18 @@ class ChuDeController extends Controller
 
         Session::flash('alert-danger','Xóa thành công');
         return redirect()->route('backend.chude.index');
+    }
+
+    public function pdf(){
+        $chude = ChuDe::all();
+        $data = [
+            'danhsachchude' =>$chude,
+        ];
+
+        // return view('backend.chude.pdf')
+        //         ->with('danhsachchude',$chude);
+
+        $pdf = PDF::loadView('backend.chude.pdf', $data);
+        return $pdf->download('DanhMucChuDe.pdf');
     }
 }

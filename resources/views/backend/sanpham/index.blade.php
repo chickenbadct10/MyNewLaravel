@@ -28,6 +28,7 @@ Trở về trang chủ
 <div class="container">
     <a  href="{{route('backend.sanpham.create')}}" class="btn btn-primary" id="button">Thêm mới Sản phẩm</a>
     <a  href="{{route('backend.sanpham.print')}}" class="btn btn-success" id="button">In danh sách Sản phẩm</a>
+    <a  href="{{route('backend.sanpham.pdf')}}" class="btn btn-danger" id="button">Xuất pdf Sản phẩm</a>
 
     <br/>
   <table class="table">

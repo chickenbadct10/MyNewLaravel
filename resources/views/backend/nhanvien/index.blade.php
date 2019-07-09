@@ -27,6 +27,8 @@ Trở về trang chủ
         </script>
 <div class="container">
     <a  href="{{route('backend.nhanvien.create')}}" class="btn btn-primary" id="button">Thêm mới Nhân viên</a>
+    <a  href="{{route('backend.nhanvien.print')}}" class="btn btn-success" id="button">In danh sách Nhân viên</a>
+    <a  href="{{route('backend.nhanvien.pdf')}}" class="btn btn-danger" id="button">Xuất pdf Nhân viên</a>
     <br/>
   <table class="table">
     <thead>

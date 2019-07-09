@@ -27,6 +27,8 @@ Trở về trang chủ
         </script>
 <div class="container">
     <a  href="{{route('backend.chude.create')}}" class="btn btn-success" id="button">Thêm mới chủ đề</a>
+    <a  href="{{route('backend.chude.pdf')}}" class="btn btn-danger" id="button">Xuất pdf chủ đề</a>
+
     <br/>
   <table class="table">
     <thead>

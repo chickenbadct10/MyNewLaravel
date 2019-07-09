@@ -66,11 +66,16 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
-        ],
-
+        //Sử dụng băng model của laravel
+        // 'users' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\User::class,
+        // ],
+        // Thay thế bằng việc sử dụng bảng nhân viên
+            'users'=>[
+                'driver' => 'custom',
+                'model' => App\Nhanvien::class,
+            ]
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

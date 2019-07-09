@@ -56,11 +56,16 @@
                 </a>
             </li>
        <!-- Danh mục Nhân viên -->
-       <li class="nav-item">
-            <a class="nav-link" href="{{route('backend.nhanvien.index')}}">
-                Danh sách Nhân viên
-            </a>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.nhanvien.index')}}">
+                    Danh sách Nhân viên
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.nhacungcap.index')}}">
+                    Danh sách Nhà cung cấp
+                </a>
+            </li>
           </ul>
         </div>
       </nav>
