@@ -66,6 +66,41 @@
                     Danh sách Nhà cung cấp
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.hinhanh.index')}}">
+                    Danh sách Hình ảnh
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.donhang.index')}}">
+                    Danh sách Đơn hàng
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.mausanpham.index')}}">
+                    Danh sách Màu sản phẩm
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.gopy.index')}}">
+                    Danh sách Góp ý
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.chudesanpham.index')}}">
+                    Danh sách Chủ đề sản phẩm
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.khuyenmai.index')}}">
+                    Danh sách Khuyến mãi
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('backend.phieunhap.index')}}">
+                    Danh sách Phiếu nhập
+                </a>
+            </li>
           </ul>
         </div>
       </nav>

@@ -14,4 +14,17 @@ class Khuyenmai extends Model
     protected $primaryKey   = 'km_ma';
     protected $dates        = ['km_batDau', 'km_ketThuc', 'km_ngayLap', 'km_ngayKyNhay', 'km_ngayDuyet', 'km_taoMoi', 'km_capNhat'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+
+    public function nhanVienLap()
+    {
+        return $this->belongsTo('App\Nhanvien', 'nv_nguoiLap', 'nv_ma');
+    }
+    public function nhanVienKyNhay()
+    {
+        return $this->belongsTo('App\Nhanvien', 'nv_kyNhay', 'nv_ma');
+    }
+    public function nhanVienKyDuyet()
+    {
+        return $this->belongsTo('App\Nhanvien', 'nv_kyDuyet', 'nv_ma');
+    }
 }

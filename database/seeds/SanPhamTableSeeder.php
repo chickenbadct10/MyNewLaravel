@@ -15,7 +15,7 @@ class SanphamTableSeeder extends Seeder {
         $uPI = new VnPersonalInfo();
         $faker    = Faker\Factory::create('vi_VN');
         $photos = array('hoahong.jpg','hoalan.jpg','hoatuoi.jpg');
-        for ($i=1; $i <= 30; $i++) {
+        for ($i=31; $i <= 60; $i++) {
             $today = new DateTime();
             array_push($list, [
                 'sp_ten'                  => "sp_ten $i",

@@ -21,8 +21,7 @@ Route::post('/admin/password/email', 'Auth\ForgotPasswordController@sendResetLin
 Route::get('/admin/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('/admin/password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('/home', 'HomeController@index')->name('home');
-// Group middleware quản lý chức năng khi login mới được sử dụng
-Route::group(['middleware' => 'auth'], function(){
+
     //Route danh sách  Sản phẩm
     Route::get('/sanpham', 'SanPhamController@index')->name('backend.sanpham.index');
     Route::get('/sanpham/themmoi', 'SanPhamController@create')->name('backend.sanpham.create');
@@ -33,6 +32,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/sanpham/print', 'SanPhamController@print')->name('backend.sanpham.print');
     Route::get('/sanpham/pdf', 'SanPhamController@pdf')->name('backend.sanpham.pdf');
     Route::get('/admin/loai', 'LoaiController@index')->name('backend.loai.index');
+// Group middleware quản lý chức năng khi login mới được sử dụng
+Route::group(['middleware' => 'auth'], function(){
     //Loại
     Route::get('/admin/loai/themmoi', 'LoaiController@create')->name('backend.loai.create');
     Route::post('/admin/loai/store', 'LoaiController@store')->name('backend.loai.store');
@@ -117,6 +118,91 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('/nhacungcap/delete/{id}', 'NhaCungCapController@destroy')->name('backend.nhacungcap.destroy');
     Route::get('/nhacungcap/print', 'NhaCungCapController@print')->name('backend.nhacungcap.print');
     Route::get('/nhacungcap/pdf', 'NhaCungCapController@pdf')->name('backend.nhacungcap.pdf');
-    //Route dành cho backend
-    Route::get('/admin/','BackendController@dashboard')->name('backend.dashboard');
 });
+Route::get('/admin/','BackendController@dashboard')->name('backend.dashboard');
+
+    //Route danh sách hình ảnh
+    Route::get('/hinhanh', 'HinhAnhController@index')->name('backend.hinhanh.index');
+    Route::get('/hinhanh/themmoi', 'HinhAnhController@create')->name('backend.hinhanh.create');
+    Route::post('/hinhanh/store', 'HinhAnhController@store')->name('backend.hinhanh.store');
+    Route::get('/hinhanh/edit/{id}', 'HinhAnhController@edit')->name('backend.hinhanh.edit');
+    Route::put('/hinhanh/update/{id}', 'HinhAnhController@update')->name('backend.hinhanh.update');
+    Route::delete('/hinhanh/delete/{id}', 'HinhAnhController@destroy')->name('backend.hinhanh.destroy');
+    Route::get('/hinhanh/print', 'HinhAnhController@print')->name('backend.hinhanh.print');
+    Route::get('/hinhanh/pdf', 'HinhAnhController@pdf')->name('backend.hinhanh.pdf');
+
+   //Route danh sách đơn hàng
+   Route::get('/donhang', 'DonHangController@index')->name('backend.donhang.index');
+   Route::get('/donhang/themmoi', 'DonHangController@create')->name('backend.donhang.create');
+   Route::post('/donhang/store', 'DonHangController@store')->name('backend.donhang.store');
+   Route::get('/donhang/edit/{id}', 'DonHangController@edit')->name('backend.donhang.edit');
+   Route::put('/donhang/update/{id}', 'DonHangController@update')->name('backend.donhang.update');
+   Route::delete('/donhang/delete/{id}', 'DonHangController@destroy')->name('backend.donhang.destroy');
+   Route::get('/donhang/print', 'DonHangController@print')->name('backend.donhang.print');
+   Route::get('/donhang/pdf', 'DonHangController@pdf')->name('backend.donhang.pdf');
+
+
+     //Route danh sách màu sản phẩm
+     Route::get('/mausanpham', 'MauSanPhamController@index')->name('backend.mausanpham.index');
+     Route::get('/mausanpham/themmoi', 'MauSanPhamController@create')->name('backend.mausanpham.create');
+     Route::post('/mausanpham/store', 'MauSanPhamController@store')->name('backend.mausanpham.store');
+     Route::get('/mausanpham/edit/{id}', 'MauSanPhamController@edit')->name('backend.mausanpham.edit');
+     Route::put('/mausanpham/update/{id}', 'MauSanPhamController@update')->name('backend.mausanpham.update');
+     Route::delete('/mausanpham/delete/{id}', 'MauSanPhamController@destroy')->name('backend.mausanpham.destroy');
+     Route::get('/mausanpham/print', 'MauSanPhamController@print')->name('backend.mausanpham.print');
+     Route::get('/mausanpham/pdf', 'MauSanPhamController@pdf')->name('backend.mausanpham.pdf');
+
+
+       //Route danh sách hình ảnh
+    Route::get('/hinhanh', 'HinhAnhController@index')->name('backend.hinhanh.index');
+    Route::get('/hinhanh/themmoi', 'HinhAnhController@create')->name('backend.hinhanh.create');
+    Route::post('/hinhanh/store', 'HinhAnhController@store')->name('backend.hinhanh.store');
+    Route::get('/hinhanh/edit/{id}', 'HinhAnhController@edit')->name('backend.hinhanh.edit');
+    Route::put('/hinhanh/update/{id}', 'HinhAnhController@update')->name('backend.hinhanh.update');
+    Route::delete('/hinhanh/delete/{id}', 'HinhAnhController@destroy')->name('backend.hinhanh.destroy');
+    Route::get('/hinhanh/print', 'HinhAnhController@print')->name('backend.hinhanh.print');
+    Route::get('/hinhanh/pdf', 'HinhAnhController@pdf')->name('backend.hinhanh.pdf');
+
+
+      //Route danh sách Góp ý
+      Route::get('/gopy', 'GopYController@index')->name('backend.gopy.index');
+      Route::get('/gopy/themmoi', 'GopYController@create')->name('backend.gopy.create');
+      Route::post('/gopy/store', 'GopYController@store')->name('backend.gopy.store');
+      Route::get('/gopy/edit/{id}', 'GopYController@edit')->name('backend.gopy.edit');
+      Route::put('/gopy/update/{id}', 'GopYController@update')->name('backend.gopy.update');
+      Route::delete('/gopy/delete/{id}', 'GopYController@destroy')->name('backend.gopy.destroy');
+      Route::get('/gopy/print', 'GopYController@print')->name('backend.gopy.print');
+      Route::get('/gopy/pdf', 'GopYController@pdf')->name('backend.gopy.pdf');
+
+
+        //Route danh sách chủ đề sản phẩm
+    Route::get('/chudesanpham', 'ChuDeSanPhamController@index')->name('backend.chudesanpham.index');
+    Route::get('/chudesanpham/themmoi', 'ChuDeSanPhamController@create')->name('backend.chudesanpham.create');
+    Route::post('/chudesanpham/store', 'ChuDeSanPhamController@store')->name('backend.chudesanpham.store');
+    Route::get('/chudesanpham/edit/{id}', 'ChuDeSanPhamController@edit')->name('backend.chudesanpham.edit');
+    Route::put('/chudesanpham/update/{id}', 'ChuDeSanPhamController@update')->name('backend.chudesanpham.update');
+    Route::delete('/chudesanpham/delete/{id}', 'ChuDeSanPhamController@destroy')->name('backend.chudesanpham.destroy');
+    Route::get('/chudesanpham/print', 'ChuDeSanPhamController@print')->name('backend.chudesanpham.print');
+    Route::get('/chudesanpham/pdf', 'ChuDeSanPhamController@pdf')->name('backend.chudesanpham.pdf');
+
+
+      //Route danh sách Khuyễn mãi
+      Route::get('/khuyenmai', 'KhuyenMaiController@index')->name('backend.khuyenmai.index');
+      Route::get('/khuyenmai/themmoi', 'KhuyenMaiController@create')->name('backend.khuyenmai.create');
+      Route::post('/khuyenmai/store', 'KhuyenMaiController@store')->name('backend.khuyenmai.store');
+      Route::get('/khuyenmai/edit/{id}', 'KhuyenMaiController@edit')->name('backend.khuyenmai.edit');
+      Route::put('/khuyenmai/update/{id}', 'KhuyenMaiController@update')->name('backend.khuyenmai.update');
+      Route::delete('/khuyenmai/delete/{id}', 'KhuyenMaiController@destroy')->name('backend.khuyenmai.destroy');
+      Route::get('/khuyenmai/print', 'KhuyenMaiController@print')->name('backend.khuyenmai.print');
+      Route::get('/khuyenmai/pdf', 'KhuyenMaiController@pdf')->name('backend.khuyenmai.pdf');
+
+
+        //Route danh sách Phiếu nhập
+    Route::get('/phieunhap', 'PhieuNhapController@index')->name('backend.phieunhap.index');
+    Route::get('/phieunhap/themmoi', 'PhieuNhapController@create')->name('backend.phieunhap.create');
+    Route::post('/phieunhap/store', 'PhieuNhapController@store')->name('backend.phieunhap.store');
+    Route::get('/phieunhap/edit/{id}', 'PhieuNhapController@edit')->name('backend.phieunhap.edit');
+    Route::put('/phieunhap/update/{id}', 'PhieuNhapController@update')->name('backend.phieunhap.update');
+    Route::delete('/phieunhap/delete/{id}', 'PhieuNhapController@destroy')->name('backend.phieunhap.destroy');
+    Route::get('/phieunhap/print', 'PhieuNhapController@print')->name('backend.phieunhap.print');
+    Route::get('/phieunhap/pdf', 'PhieuNhapController@pdf')->name('backend.phieunhap.pdf');

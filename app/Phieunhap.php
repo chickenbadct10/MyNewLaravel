@@ -14,4 +14,21 @@ class Phieunhap extends Model
     protected $primaryKey   = 'pn_ma';
     protected $dates        = ['pn_ngayXuatHoaDon', 'pn_ngayLapPhieu', 'pn_ngayXacNhan', 'pn_ngayNhapKho', 'pn_taoMoi', 'pn_capNhat'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+
+    public function nhanVienNhap()
+    {
+        return $this->belongsTo('App\Nhanvien', 'nv_nguoiLapPhieu', 'nv_ma');
+    }
+    public function nhanVienKeToan()
+    {
+        return $this->belongsTo('App\Nhanvien', 'nv_keToan', 'nv_ma');
+    }
+    public function nhanVienThuKho()
+    {
+        return $this->belongsTo('App\Nhanvien', 'nv_thuKho', 'nv_ma');
+    }
+    public function nhaCungCap()
+    {
+        return $this->belongsTo('App\Nhacungcap', 'ncc_ma', 'ncc_ma');
+    }
 }

@@ -13,4 +13,13 @@ class Gopy extends Model
     protected $primaryKey   = 'gy_ma';
     protected $dates        = ['gy_thoiGian'];
     protected $dateFormat   = 'Y-m-d H:i:s';
+
+    public function khachHang()
+    {
+        return $this->belongsTo('App\Khachhang', 'kh_ma', 'kh_ma');
+    }
+    public function sanPham()
+    {
+        return $this->belongsTo('App\SanPham', 'sp_ma', 'sp_ma');
+    }
 }
