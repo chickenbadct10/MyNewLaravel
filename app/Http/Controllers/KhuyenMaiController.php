@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Khuyenmai;
+use App\Nhanvien;
 
 class KhuyenMaiController extends Controller
 {
@@ -27,7 +28,8 @@ class KhuyenMaiController extends Controller
      */
     public function create()
     {
-        //
+        $nhanvien = Nhanvien::all();
+
     }
 
     /**
@@ -83,6 +85,9 @@ class KhuyenMaiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $khuyenmai = Khuyenmai::find($id);
+        $khuyenmai->delete();
+        Session::flash('alert-danger','Xóa thành công');
+        return redirect()->route('backend.khuyenmai.index');
     }
 }

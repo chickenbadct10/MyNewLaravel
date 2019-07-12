@@ -60,7 +60,9 @@ class DonhangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $donhang = Donhang::find($id);
+        return view('backend.donhang.edit')
+                ->with('donhang',$donhang);
     }
 
     /**
@@ -72,7 +74,11 @@ class DonhangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $donhang = Donhang::find($id);
+        $donhang->dh_trangThai = $request->input('dh_trangThai');
+        $donhang->save();
+        Session::flash('alert-warning','Cập nhật thành công');
+        return redirect()->route('backend.donhang.index');
     }
 
     /**
@@ -83,6 +89,9 @@ class DonhangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $donhang = Donhang::find($id);
+        $donhang->delete();
+        Session::flash('alert-danger','Xóa thành công');
+        return redirect()->route('backend.donhang.index');
     }
 }

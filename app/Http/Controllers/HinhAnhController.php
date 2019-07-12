@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\HinhAnh;
 use Session;
+use Barryvdh\DomPDF\Facade as PDF;
+
 class HinhAnhController extends Controller
 {
     /**
@@ -87,5 +89,18 @@ class HinhAnhController extends Controller
         $hinhanh->delete();
         Session::flash('alert-danger','Xóa thành công');
         return redirect()->route('backend.hinhanh.index');
+    }
+
+    public function pdf(){
+        $hinhanh = HinhAnh::all();
+        $data = [
+            'hinhanh' =>$hinhanh,
+        ];
+
+        // return view('backend.chude.pdf')
+        //         ->with('danhsachchude',$chude);
+
+        $pdf = PDF::loadView('backend.hinhanh.pdf', $data);
+        return $pdf->download('DanhSachHinhAnh.pdf');
     }
 }

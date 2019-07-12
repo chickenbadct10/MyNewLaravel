@@ -26,7 +26,6 @@ Trở về trang chủ
                 }
         </script>
 <div class="container">
-    <a  href="{{route('backend.gopy.create')}}" class="btn btn-success" id="button">Thêm mới Góp ý</a>
     <a  href="{{route('backend.gopy.pdf')}}" class="btn btn-danger" id="button">Xuất pdf Góp ý</a>
 
     <br/>
@@ -51,8 +50,13 @@ Trở về trang chủ
                 <th>{{$gy ->gy_thoiGian}}</th>
                 <th>{{$gy ->khachHang->kh_hoTen}}</th>
                 <th>{{$gy ->sanPham->sp_ten}}</th>
-                <th>{{$gy ->gy_trangThai}}</th>
-
+                <th>
+                        <select name="gy_trangThai" class="form-control" disabled="true">
+                            <option value="1" {{ $gy->gy_trangThai == 1 ? "selected" : "" }}>Khóa</option>
+                            <option value="2" {{ $gy->gy_trangThai == 2 ? "selected" : "" }}>Khả dụng</option>
+                            <option value="3" {{ $gy->gy_trangThai == 3 ? "selected" : "" }}>Chờ duyệt</option>
+                        </select>
+                </th>
                 <th>
                     <a href="{{route('backend.gopy.edit',['id' =>$gy->gy_ma])}}" class="btn btn-primary">Sửa</a>
                 </th>

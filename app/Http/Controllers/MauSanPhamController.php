@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\MauSanpham;
+use App\SanPham;
+use App\Mau;
 
 class MauSanPhamController extends Controller
 {
@@ -60,7 +62,13 @@ class MauSanPhamController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sanpham = SanPham::all();
+        $mau = Mau::all();
+        $mausanpham = MauSanPham::all();
+        return view('backend.mausanpham.edit')
+                ->with('sanpham',$sanpham)
+                ->with('mau',$mau)
+                ->with('mausanpham',$mausanpham);
     }
 
     /**

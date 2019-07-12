@@ -26,9 +26,7 @@ Trở về trang chủ
                 }
         </script>
 <div class="container">
-    <a  href="{{route('backend.hinhanh.create')}}" class="btn btn-success" id="button">Thêm mới Hình ảnh</a>
     <a  href="{{route('backend.hinhanh.pdf')}}" class="btn btn-danger" id="button">Xuất pdf Hình ảnh</a>
-
     <br/>
   <table class="table">
     <thead>
@@ -36,8 +34,6 @@ Trở về trang chủ
         <th>STT</th>
         <th>Mã Sản phẩm</th>
         <th>Hình ảnh tên</th>
-        <th>Sửa </th>
-        <th>Xóa</th>
       </tr>
     </thead>
     <tbody>
@@ -46,16 +42,6 @@ Trở về trang chủ
                 <th>{{$loop->index + 1}}</th>
                 <th>{{$ha ->sp_ma}}</th>
                 <th>{{$ha ->ha_ten}}</th>
-                <th>
-                    <a href="{{route('backend.hinhanh.edit',['id' =>$ha->ha_stt])}}" class="btn btn-primary">Sửa</a>
-                </th>
-                <th>
-                        <form method="post" id="m_xoa" action='{{route('backend.hinhanh.destroy',['id' =>$ha->ha_stt])}}'>
-                                @csrf
-                                <input type="hidden" name="_method" value="DELETE"/>
-                            <button class="btn btn-danger">Xóa </button>
-                        </form>
-                </th>
             </tr>
         @endforeach
     </tbody>
@@ -66,14 +52,4 @@ Trở về trang chủ
 </html>
 @endsection
 @section('custom-js')
-<script>
-        function myFunction() {
-          var r = confirm("Bạn có muốn xóa chủ đề này không?");
-          if (r == true) {
-            document.getElementById("cd_xoa").click();
-          } else {
-
-          }
-        }
-</script>
 @endsection

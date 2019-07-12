@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Gopy;
+use Session;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class GopYController extends Controller
 {
@@ -27,7 +29,7 @@ class GopYController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -60,7 +62,9 @@ class GopYController extends Controller
      */
     public function edit($id)
     {
-        //
+        $gopy = Gopy::find($id);
+        return view('backend.gopy.edit')
+                ->with('gopy',$gopy);
     }
 
     /**
@@ -72,7 +76,11 @@ class GopYController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $gopy = Gopy::find($id);
+        $gopy->gy_trangThai = $request->input('gy_trangThai');
+        $gopy->save();
+        Session::flash('alert-warning','Cập nhật thành công');
+        return redirect()->route('backend.gopy.index');
     }
 
     /**
@@ -83,6 +91,22 @@ class GopYController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $gopy = Gopy::find($id);
+        $gopy->delete();
+        Session::flash('alert-danger','Xóa thành công');
+        return redirect()->route('backend.gopy.index');
+    }
+
+    public function pdf(){
+        $gopy = Gopy::all();
+        $data = [
+            'gopy' =>$gopy,
+        ];
+
+        // return view('backend.chude.pdf')
+        //         ->with('danhsachchude',$chude);
+
+        $pdf = PDF::loadView('backend.gopy.pdf', $data);
+        return $pdf->download('DanhSachGopY.pdf');
     }
 }
