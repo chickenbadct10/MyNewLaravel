@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Session;
 use Storage;
 use Barryvdh\DomPDF\Facade as PDF;
-
+use App\Http\Requests\SanPhamCreateRequest;
 class SanPhamController extends Controller
 {
     /**
@@ -45,7 +45,7 @@ class SanPhamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SanPhamCreateRequest $request)
     {
         $sp = new SanPham();
         $sp->sp_ten = $request->sp_ten;

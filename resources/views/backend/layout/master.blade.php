@@ -26,6 +26,7 @@
                         <a href="{{route('backend.dashboard')}}">@yield('feature-description')</a>
                 </div>
                 @include('backend.layout.partials.flash-message')
+                @include('backend.layout.partials.error-message')
                 @yield('content')
               </main>
               <!-- EndContent-->
@@ -37,6 +38,10 @@
     <script src="{{asset('vendor/popperjs/popper.min.js')}}"></script>
   <script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
   <!-- Custom riêng javascript cho từng trang quản lý -->
+
+      <!-- Thư viện Jquery validation -->
+      <script src="{{ asset('vendor/jquery-validation/jquery.validate.min.js') }}"></script>
+      <script src="{{ asset('vendor/jquery-validation/localization/messages_vi.min.js') }}"></script>
   @yield('custom-js');
   </body>
 </html>

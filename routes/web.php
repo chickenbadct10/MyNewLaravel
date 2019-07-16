@@ -15,6 +15,8 @@ Route::post('/admin/logout', 'Auth\LoginController@logout')->name('logout');
 // Đăng ký Routes...
 Route::get('/admin/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('/admin/register', 'Auth\RegisterController@register');
+Route::post('/admin/active/{nv_ma}', 'Auth\RegisterController@active')->name('active');
+
 // Quên mật khẩu Routes...
 Route::get('/admin/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('/admin/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -206,3 +208,11 @@ Route::get('/admin/','BackendController@dashboard')->name('backend.dashboard');
     Route::delete('/phieunhap/delete/{id}', 'PhieuNhapController@destroy')->name('backend.phieunhap.destroy');
     Route::get('/phieunhap/print', 'PhieuNhapController@print')->name('backend.phieunhap.print');
     Route::get('/phieunhap/pdf', 'PhieuNhapController@pdf')->name('backend.phieunhap.pdf');
+
+
+// Các rout dành riêng cho frontend
+//Namespace Php
+    Route::get('/','Frontend\FrontendController@index')->name('frontend.home');
+    Route::get('/gioi-thieu', 'Frontend\FrontendController@about')->name('frontend.about');
+    Route::get('/lien-he', 'Frontend\FrontendController@contact')->name('frontend.contact');
+    Route::post('/lien-he/goi-loi-nhan', 'Frontend\FrontendController@sendMailContactForm')->name('frontend.contact.sendMailContactForm');

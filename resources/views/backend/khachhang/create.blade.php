@@ -9,7 +9,7 @@
 Xem nhanh toàn hệ thống
 @endsection
 @section('content')
-<form method="post" action="{{route('backend.khachhang.store')}}">
+<form id="frmKhachHang" name="frmKhachHang" method="post" action="{{route('backend.khachhang.store')}}">
         @csrf
         <form>
                 <div class="form-group">
@@ -70,4 +70,114 @@ Xem nhanh toàn hệ thống
 
         </form>
 </form>
+@endsection
+@section('custom-js')
+<script>
+    $(document).ready(function () {
+        $("#frmKhachHang").validate({
+            rules: {
+                kh_taiKhoan: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                kh_matKhau: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                kh_hoTen: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                kh_email: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                kh_ngaySinh: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                kh_diaChi: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                kh_dienThoai: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+            },
+            messages: {
+                kh_taiKhoan: {
+                    required: "Vui lòng nhập tên tài khoản",
+                    minlength: "Tên tài khoản phải có ít nhất 3 ký tự",
+                    maxlength: "Tên tài khoản không được vượt quá 50 ký tự"
+                },
+                kh_matKhau: {
+                    required: "Vui lòng nhập Mật khẩu",
+                    minlength: "Mật khẩu phải có ít nhất 3 ký tự",
+                    maxlength: "Mật khẩu không được vượt quá 50 ký tự"
+                },
+                kh_hoTen: {
+                    required: "Vui lòng nhập Họ và tên",
+                    minlength: "Họ và tên phải có ít nhất 3 ký tự",
+                    maxlength: "Họ và tên không được vượt quá 50 ký tự"
+                },
+                kh_email: {
+                    required: "Vui lòng nhập tên email",
+                    minlength: "Email phải có ít nhất 3 ký tự",
+                    maxlength: "Email không được vượt quá 50 ký tự"
+                },
+                kh_ngaySinh: {
+                    required: "Vui lòng nhập Ngày sinh",
+                    minlength: "Ngày sinh phải có ít nhất 3 ký tự",
+                    maxlength: "Ngày sinh không được vượt quá 50 ký tự"
+                },
+                kh_diaChi: {
+                    required: "Vui lòng nhập Địa chỉ",
+                    minlength: "Địa chỉ phải có ít nhất 3 ký tự",
+                    maxlength: "Địa chỉ không được vượt quá 50 ký tự"
+                },
+                kh_dienThoai: {
+                    required: "Vui lòng nhập Điện thoại",
+                    minlength: "Điện thoại phải có ít nhất 3 ký tự",
+                    maxlength: "Điện thoại không được vượt quá 50 ký tự"
+                },
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                // Thêm class `invalid-feedback` cho field đang có lỗi
+                error.addClass("invalid-feedback");
+                if (element.prop("type") === "checkbox") {
+                    error.insertAfter(element.parent("label"));
+                } else {
+                    error.insertAfter(element);
+                }
+                // Thêm icon "Kiểm tra không Hợp lệ"
+                if (!element.next("span")[0]) {
+                    $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>")
+                        .insertAfter(element);
+                }
+            },
+            success: function (label, element) {
+                // Thêm icon "Kiểm tra Hợp lệ"
+                if (!$(element).next("span")[0]) {
+                    $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>")
+                        .insertAfter($(element));
+                }
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass("is-invalid").removeClass("is-valid");
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).addClass("is-valid").removeClass("is-invalid");
+            }
+        });
+    });
+</script>
 @endsection

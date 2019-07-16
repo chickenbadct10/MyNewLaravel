@@ -39,6 +39,26 @@ class KhachhangController extends Controller
      */
     public function store(Request $request)
     {
+                // Kiểm tra ràng buộc dũ liệu (validator)
+                $validator = Validator::make($request->all(),[
+                    'kh_taiKhoan' =>'required|min:3|max:50|unique:cusc_khachhang',
+                    'kh_matKhau' =>'required|min:3|max:50',
+                    'kh_hoTen' =>'required|min:3|max:50',
+                    'kh_email' =>'required|min:3|max:50',
+                    'kh_ngaySinh' =>'required|min:3|max:50',
+                    'kh_diaChi' =>'required|min:3|max:50',
+                    'kh_dienThoai' =>'required|min:3|max:50',
+
+                ]);
+
+                if($validator->fails()){
+                    return redirect(route('backend.khachhang.create'))
+                                    ->withErrors($validator)
+                                    ->withInput();
+                }
+
+
+
         $khachhang = new Khachhang();
         $khachhang->kh_taiKhoan = $request->input('kh_taiKhoan');
         $khachhang->kh_matKhau = $request->input('kh_matKhau');

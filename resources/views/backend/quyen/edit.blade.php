@@ -9,7 +9,7 @@
 Xem nhanh toàn hệ thống
 @endsection
 @section('content')
-<form method="post" action="{{route('backend.quyen.update',['id' =>$quyen->q_ma])}}}">
+<form id="frmQuyen" name="frmQuyen" method="post" action="{{route('backend.quyen.update',['id' =>$quyen->q_ma])}}}">
         @csrf
         <form>
                 <input type="hidden" name="_method" value="PUT"/>
@@ -24,4 +24,64 @@ Xem nhanh toàn hệ thống
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
             </form>
 </form>
+@endsection
+@section('custom-js')
+<script>
+    $(document).ready(function () {
+        $("#frmQuyen").validate({
+            rules: {
+                q_ten: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                q_dienGiai: {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+            },
+            messages: {
+                l_ten: {
+                    required: "Vui lòng nhập tên Quyền",
+                    minlength: "Tên Quyền phải có ít nhất 3 ký tự",
+                    maxlength: "Tên Quyền không được vượt quá 50 ký tự"
+                },
+                q_dienGiai: {
+                    required: "Vui lòng nhập Diễn giải",
+                    minlength: "Diễn giải phải có ít nhất 3 ký tự",
+                    maxlength: "Diễn giải không được vượt quá 50 ký tự"
+                },
+            },
+            errorElement: "em",
+            errorPlacement: function (error, element) {
+                // Thêm class `invalid-feedback` cho field đang có lỗi
+                error.addClass("invalid-feedback");
+                if (element.prop("type") === "checkbox") {
+                    error.insertAfter(element.parent("label"));
+                } else {
+                    error.insertAfter(element);
+                }
+                // Thêm icon "Kiểm tra không Hợp lệ"
+                if (!element.next("span")[0]) {
+                    $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>")
+                        .insertAfter(element);
+                }
+            },
+            success: function (label, element) {
+                // Thêm icon "Kiểm tra Hợp lệ"
+                if (!$(element).next("span")[0]) {
+                    $("<span class='glyphicon glyphicon-ok form-control-feedback'></span>")
+                        .insertAfter($(element));
+                }
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass("is-invalid").removeClass("is-valid");
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).addClass("is-valid").removeClass("is-invalid");
+            }
+        });
+    });
+</script>
 @endsection

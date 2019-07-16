@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\ChuDe;
 use Session;
 use Barryvdh\DomPDF\Facade as PDF;
+use Validator;
+use App\Http\Requests\ChuDeCreateRequest;
 class ChuDeController extends Controller
 {
     /**
@@ -37,8 +39,18 @@ class ChuDeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChuDeCreateRequest $request)
     {
+        // // Kiểm tra ràng buộc dũ liệu (validator)
+        // $validator = Validator::make($request->all(),[
+        //     'cd_ten' =>'required|min:3|max:50|unique:cusc_chude'
+        // ]);
+
+        // if($validator->fails()){
+        //     return redirect(route('backend.chude.create'))
+        //                     ->withErrors($validator)
+        //                     ->withInput();
+        // }
         $cd = new ChuDe();
         $cd->cd_ten = $request->input('cd_ten');
         $cd->cd_trangthai = 2;
